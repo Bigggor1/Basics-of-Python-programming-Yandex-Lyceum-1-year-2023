@@ -10,7 +10,7 @@ def board(num, size):
     pixels = new_image.load()
     for i in range(num):
         if num % 2 == 0:
-            if z == 1:
+            if z == 1 and i != 0:
                 z = 0
             else:
                 z = 1            

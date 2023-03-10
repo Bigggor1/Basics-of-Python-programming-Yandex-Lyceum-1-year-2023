@@ -21,4 +21,3 @@ def board(num, size):
                     if z == 1:
                         pixels[x + j * size, y + i * size] = 255, 255, 255
     new_image.save('res.png')
-board(5, 30)

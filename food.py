@@ -1,11 +1,11 @@
 class FoodInfo:
-    def __int__(self, proteins, fats, carbohydrates):
+    def __init__(self, proteins, fats, carbohydrates):
         self.proteins = proteins
         self.fats = fats
         self.carbohydrates = carbohydrates
         self.kcalories = 4 * proteins + 9 * fats + 4 * carbohydrates
     def get_proteins(self):
-        return slef.proteins
+        return self.proteins
     def get_fats(self):
         return self.fats
     def get_carbohydrates(self):

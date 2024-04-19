@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
+</head>
+<body>
+ <h1> Миссия Колонизация Марса </h1>
+ <h3> Список профессий </h3>
+ {% if num == 'ol' %}
+ <ol>{% for i in list %}
+    <li>{{ i }}</li>
+    {% endfor %}</ol>
+ <ul>{% elif num == 'ul' %}
+    {% for i in list %}
+    <li>{{ i }}</li>
+    {% endfor %}</ul>
+ {% else: %}
+    <div> error </div>
+ {% endif %}
+</body>
+</html>

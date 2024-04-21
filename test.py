@@ -12,9 +12,9 @@ def toponym_by_geocode(geocode):
 
     toponym = yandex_json["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
     toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["Address"]
-    toponym_coodrinates = toponym["Point"]["pos"]
+    toponym_coordinates = toponym["Point"]["pos"]
 
-    return {'address': toponym_address, 'cords': toponym_coodrinates.replace(' ', ',')}
+    return {'address': toponym_address, 'cords': toponym_coordinates.replace(' ', ',')}
 
 
 def urlImage_by_ll(ll):
@@ -33,3 +33,6 @@ def weather_by_ll(ll):
     yandex_json = json.loads(yandex_req.text)
     return {'image': f'https://yastatic.net/weather/i/icons/funky/dark/{yandex_json['fact']['icon']}.svg',
             'temp': yandex_json['fact']['temp'], 'feels_like': yandex_json['fact']['feels_like']}
+
+toponym = toponym_by_geocode('Moscow')
+print(urlImage_by_ll(toponym['cords']), to ponym['address']['formatted'], weather_by_ll(toponym['cords']))

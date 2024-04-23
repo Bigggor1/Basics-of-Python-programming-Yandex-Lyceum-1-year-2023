@@ -3,10 +3,10 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/list_prof/<num>')
-def bob(num):
-    list = ['one', 'dog', 'seven']
-    return render_template('base.html', list=list, num=num)
+@app.route('/list_prof', methods=['GET', 'POST'])
+def bob():
+    list = requests.get('http://127.0.0.1:8080')
+    return list
 
 
 if __name__ == '__main__':

@@ -34,5 +34,6 @@ def weather_by_ll(ll):
     return {'image': f'https://yastatic.net/weather/i/icons/funky/dark/{yandex_json['fact']['icon']}.svg',
             'temp': yandex_json['fact']['temp'], 'feels_like': yandex_json['fact']['feels_like']}
 
-toponym = toponym_by_geocode('Moscow')
-print(urlImage_by_ll(toponym['cords']), to ponym['address']['formatted'], weather_by_ll(toponym['cords']))
+toponym = toponym_by_geocode('antalia')
+print(toponym)
+print(urlImage_by_ll(toponym['cords']), toponym['address']['formatted'], weather_by_ll(toponym['cords']))

@@ -5,16 +5,19 @@ import json
 
 
 def toponym_by_geocode(geocode):
-    yandex_req = requests.get(
-        f'http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&geocode={geocode}&lang=en_US'
-        f'&format=json')
-    yandex_json = yandex_req.json()
+    try:
+        yandex_req = requests.get(
+            f'http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&geocode={geocode}&lang=en_US'
+            f'&format=json')
+        yandex_json = yandex_req.json()
 
-    toponym = yandex_json["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
-    toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["Address"]
-    toponym_coordinates = toponym["Point"]["pos"]
+        toponym = yandex_json["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
+        toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["Address"]
+        toponym_coordinates = toponym["Point"]["pos"]
 
-    return {'address': toponym_address, 'cords': toponym_coordinates.replace(' ', ',')}
+        return {'address': toponym_address, 'cords': toponym_coordinates.replace(' ', ',')}
+    except:
+        return 'error'
 
 
 def urlImage_by_ll(ll):
@@ -34,6 +37,5 @@ def weather_by_ll(ll):
     return {'image': f'https://yastatic.net/weather/i/icons/funky/dark/{yandex_json['fact']['icon']}.svg',
             'temp': yandex_json['fact']['temp'], 'feels_like': yandex_json['fact']['feels_like']}
 
-toponym = toponym_by_geocode('antalia')
-print(toponym)
-print(urlImage_by_ll(toponym['cords']), toponym['address']['formatted'], weather_by_ll(toponym['cords']))
+toponym = toponym_by_geocode('moscow')
+print(weather_by_ll(toponym['cords']))
